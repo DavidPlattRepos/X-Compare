@@ -6,18 +6,18 @@ angular.module('xcompare.products', [])
   $scope.rankings = Products.leaderboard();
 
   $scope.newMatch = function(winner) {
-    var arr = Products.randomMatch();	
-    Products.vote(winner);
-    $scope.product1 = arr[0];
-    $scope.product2 = arr[1];
+    Products.getRandomMatch(winner).then(function(data) {
+      $scope.product1 = data[0];
+      $scope.product2 = data[1];
+    })
   }	
 
   $scope.create = function() {
   	var newProd = {
   		title: search1,
-			src: search2,
-			description: search3, 
-			winPercentage: search4	
+      link: search2,
+			src: search3,
+			description: search4
 		}
 		
   	Products.addOne(newProd)
