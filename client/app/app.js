@@ -10,11 +10,11 @@ angular.module('xcompare', [
 		})
 		.when('/create', {
 			templateUrl: 'app/products/create.html'
-			controller: 'ProductController'
+			controller: 'ProductsController'
 		})
 		.when('/create', {
 			templateUrl: 'app/products/leaderboards.html'
-			controller: 'ProductController'
+			controller: 'ProductsController'
 		})
 })
 .run(function ($rootScope, $location) {
