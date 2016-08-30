@@ -1,7 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var products = require('./products/productsController');
+var products = require('./products/productsController.js');
 
 var app = express();
 mongoose.connect('mongodb://localhost/xcompare');

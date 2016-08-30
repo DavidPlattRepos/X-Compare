@@ -24,7 +24,13 @@ module.exports = {
   	  winPercentage: req.body.winPercentage	
   	}
 
-  	return createProduct(newProd);
+  	createProduct(newProd)
+      .then(function(createdProduct) {
+        res.json(createdProduct);
+      })
+      .fail(function(error) {
+        next(error);
+      })
   }
 
 }
