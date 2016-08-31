@@ -1,22 +1,23 @@
 angular.module('xcompare.services', []) 	
 
-.factory('Products', function($http) {
+.factory('Products', function($http, $location) {
   var leaderboard = function() {	
 		return $http({
 		    url: "http://localhost:8000/products/rankings",
 		    method: "GET"
 			}).then(function(resp) {
-				return resp;
+				return resp.data;
 			});
 	};
 
-	var getRandomMatch = function(voted) {	
+	var getRandomMatch = function(reqbody) {	
+		console.log(reqbody);
 		return $http({
 		    url: "http://localhost:8000/matchups/getRandomMatchup",
 		    method: "POST",
-		    data: {vote: voted}
+		    data: reqbody
 			}).then(function(resp) {
-				return resp;
+				return resp.data;
 			});
 	};
 
@@ -26,7 +27,8 @@ angular.module('xcompare.services', [])
 		    method: "POST",
 		    data: prod
 			}).then(function(resp) {
-				return resp;
+				$location.path('');
+				return resp.data;
 			});
 	};
 

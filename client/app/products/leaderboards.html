@@ -1,11 +1,21 @@
-<a href="#/homescreen">Homepage</a>
+<a style='color:black' href="#/">Homepage</a>
 
-<div class='container'>
-	<ul class="list-group">
-	  <li class="list-group-item" ng-repeat='item in rankings'>
-	  	<span>Title: {{item.title}}</span>
-	  	<span> <img src="/assets/redirect_icon.png"/> </span>
-	  	<span>Website: {{item.link}}</span>
-	  </li>
-	</ul>
+<button style="float:left" ng-click='refreshLeaderboard()' type="button" class="btn btn-success">Refresh Leaderboard</button>
+
+<div style="margin-top: 40px" class = 'container-fluid'>
+	<div row = 'row-fluid'>
+		<ul class="list-group">
+	  	<li style='margin-bottom:10px' class="list-group-item" ng-repeat="item in rankings">
+	  		<div class='vs'><h3>Title:</h3> {{item.title}}</div>
+	  		<div class='vs'> <img src="/assets/image1.jpg""/> </div>
+	  		<div class='vs'><h3>Website:</h3> {{item.link}} </div>
+	  	</li>
+		</ul>
+	</div>
+</div>
+
+
+
+
+
 </div>

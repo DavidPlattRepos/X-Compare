@@ -6,20 +6,19 @@ var createMatchup = Q.nbind(Matchup.create, Matchup);
 
 
 module.exports = {
-  calculatePercentages: function() {
+  calculatePercentages: function(req, res, next) {
     Product.find({}).exec().then(function(allProds) {
       Matchup.find({}).exec().then(function(allmatches) {
-        allProds.forEach(function(prod) {
+        allProds.forEach(function(prod, idx) {
           var totalCount = 0;
           var winCount = 0;
-          
           allmatches.forEach(function(match) {
-            if (prod.id === match.product1 && (!((match.votes1 === 0) && (match.votes2 === 0)))) {
+            if ((prod.id === match.product1.toString()) && (!((match.votes1 === 0) && (match.votes2 === 0)))) {
                 totalCount+=1;
                 if (match.votes1 > match.votes2) {
                   winCount+=1;
                 }
-            } else if (prod._id === match.product2 && (!((match.votes1 === 0) && (match.votes2 === 0)))) {
+            } else if ((prod.id === match.product2.toString()) && (!((match.votes1 === 0) && (match.votes2 === 0)))) {
                 totalCount+=1;
                 if (match.votes2 > match.votes1) {
                   winCount+=1;
@@ -27,24 +26,36 @@ module.exports = {
             }
           })
 
-          var winP = winCount/totalCount;
-          return Product.update({_id: prod.id}, { $set: { winPercentage: winP} }).exec();
+          if (totalCount === 0) {
+            var winP = 0;
+          } else {
+            var winP = winCount/totalCount;
+          }
+
+
+          Product.update({_id: prod._id}, { $set: { winPercentage: winP} }).exec().then(function(aff) {
+            if (idx === allProds.length-1) {
+              Product.find({}).sort({winPercentage: -1}).exec().then(function(data) {
+                res.json(data);
+              });
+            }
+          })
         })
       })  
     })  
   },
 
-  allProducts: function (req, res, next) {
-    exports.calculatePercentages().then(function() {
-      res.json('nothing');
-    })
-    // exports.calculatePercentages().then(function() {
-    //   Product.find({}).sort({winPercentage: -1}).exec()
-    //     .then(function (products) {
-    //       res.json(products);
-    //     })
-    //   })  
-  },
+  // allProducts: function (req, res, next) {
+  //   module.exports.calculatePercentages().then(function(data) {
+  //     console.log(data, 'HERE IT IS');
+  //     // Product.find({}).sort({winPercentage: -1}).exec()
+  //     //   .then(function (products) {
+  //     //     res.json(products);
+  //     //   })
+  //     // })  
+  //     res.json({k: 'k'});
+  //   })
+  // },
 
   newProduct: function(req, res, next) {
   	var newProd = new Product({

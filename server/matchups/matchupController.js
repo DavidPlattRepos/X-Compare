@@ -1,25 +1,31 @@
+var mongoose = require('mongoose');
 var Q = require('q');
 var Product = require('../products/productModel.js');
 var Matchup = require('./matchupModel.js');
 
-var createMatchup = Q.nbind(Matchup.create, Matchup);
+// var createMatchup = Q.nbind(Matchup.create, Matchup);
 
 module.exports = {
   getRandomMatchup: function(req,res,next) {
-
+    var id1 = mongoose.Types.ObjectId(req.body.matchupid);
+    console.log(typeof id1);
   	Matchup.find({}).exec()
   		.then(function(data) {
   			var vs = data[Math.floor(Math.random() * data.length)];	  
   			Product.findOne({_id: vs.product1}).exec().then(function(prod1) {
   				Product.findOne({_id: vs.product2}).exec().then(function(prod2) {
-  					res.json([prod1, prod2]);
+  					res.json([prod1, prod2, vs]);
   				})
   			})
 
         if (req.body.vote === 1) {
-          Matchup.update({_id: req.body.matchupid}, { $set: { votes1: req.body.voteCount} }).exec();
-        } else {
-        	Matchup.update({_id: req.body.matchupid}, { $set: { votes1: req.body.voteCount} }).exec();
+          Matchup.update({_id: id1}, { $inc: { votes1: 1 }}).exec().then(function(aff) {
+            console.log(aff);
+          });
+        } else if (req.body.vote === 2) {
+        	Matchup.update({_id: id1}, { $inc: { votes2: 1 }}).exec().then(function(aff) {
+            console.log(aff);
+          });
         }
   		})
   }

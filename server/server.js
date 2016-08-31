@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../client'));
 
-app.get('/matchups/getRandomMatchup', matchups.getRandomMatchup);
-app.get('/products/rankings', products.allProducts);
+app.post('/matchups/getRandomMatchup', matchups.getRandomMatchup);
+app.get('/products/rankings', products.calculatePercentages);
 app.post('/products/upload', products.newProduct);
 
 app.listen(8000);

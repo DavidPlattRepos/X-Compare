@@ -3,17 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <title>X-Compare</title>
+    <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   </head>
   <body>
-    <h1>X-Compare</h1>
+    <h1 style="margin-bottom: 130px; font-size: 100px" class="maintitle">X-Compare</h1>
 
     <div ng-view></div>
 
-    <script src="lib/angular/angular.js"></script>
-    <script src="lib/angular-route/angular-route.js"></script>
-    <script src="app/users.js"></script>
-    <script src="app/products/products.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-route/angular-route.js"></script>
+    <script src="app/products/ProductsController.js"></script>
     <script src="app/services.js"></script>
     <script src="app/app.js"></script>
   </body>

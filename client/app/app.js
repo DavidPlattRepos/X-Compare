@@ -9,15 +9,15 @@ angular.module('xcompare', [
 			templateUrl: 'app/homescreen.html'
 		})
 		.when('/create', {
-			templateUrl: 'app/products/create.html'
+			templateUrl: 'app/products/create.html',
 			controller: 'ProductsController'
 		})
 		.when('/leaderboards', {
-			templateUrl: 'app/products/leaderboards.html'
+			templateUrl: 'app/products/leaderboards.html',
 			controller: 'ProductsController'
 		})
 		.when('/matchups', {
-			templateUrl: 'app/products/matchups.html'
+			templateUrl: 'app/products/matchups.html',
 			controller: 'ProductsController'
 		})
 })

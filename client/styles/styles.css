@@ -1,0 +1,31 @@
+body {
+	background-image: url("/assets/mainback.jpg")
+}
+
+h1 {
+  color: black;
+}
+
+a {
+  color: #333;
+  font-size: 25px;
+  text-decoration: none;
+  margin-left: 1000px;
+}
+
+img {
+	height: 300px;
+	width: 300px;
+}
+
+.vs {
+	margin-bottom: 30px;
+}
+.maintitle {
+	text-align: center;
+}
+
+#container {
+  clear: both;
+  margin-top: 10px;
+}

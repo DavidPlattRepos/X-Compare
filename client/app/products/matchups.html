@@ -1,21 +1,21 @@
-<a href="#/homescreen">Homepage</a>
+<a style='color:black' href="#/">Homepage</a>
 
 <div class = 'container-fluid'>
 	<div row = 'row-fluid'>
 		<div class='col-md-6' ng-model="product1">
-	  	<button ng-click='newMatch(1)' type="button" class="btn btn-success">Vote for Me</button>
-			<span>Title: {{product1.title}}</span>
-	  	<span> <img src="/assets/redirect_icon.png"/> </span>
-	  	<span>Website: {{product1.link}}</span>
-	  	<span>Description: {product1.description} </span>
+	  	<button style="margin-bottom: 60px" ng-click='newMatch(1)' type="button" class="btn btn-success">Vote for Me</button>
+			<div class='vs'><h3>Title: </h3>{{product1.title}}</div>
+	  	<div class='vs'><img src="/assets/image1.jpg"/> </div>
+	  	<div class='vs'><h3>Website: </h3>{{product1.link}}</div>
+	  	<div class='vs'><h3>Description: </h3>{{product1.description}} </div>
 		</div>
 
 		<div class='col-md-6' ng-model="product2">
-	  	<button ng-click='newMatch(2)' type="button" class="btn btn-success">Vote for Me</button>
-			<span>Title: {{product1.title}}</span>
-	  	<span> <img src="/assets/redirect_icon.png"/> </span>
-	  	<span>Website: {{product1.link}}</span>
-	  	<span>Description: {product1.description} </span>
+	  	<button style="margin-bottom: 60px" ng-click='newMatch(2)' type="button" class="btn btn-success">Vote for Me</button>
+			<div class='vs'><h3>Title: </h3>{{product1.title}}</div>
+	  	<div class='vs'><img src="/assets/image2.jpg"/> </div>
+	  	<div class='vs'><h3>Website: </h3>{{product1.link}}</div>
+	  	<div class='vs'><h3>Description: </h3>{{product1.description}} </div>
 		</div>	
 	</div>
 </div
